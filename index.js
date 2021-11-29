@@ -1,5 +1,3 @@
-    const ANSI_CODE_REGEX = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g
-
 const fs = require("fs");
 const process = require("process");
 
@@ -22,10 +20,10 @@ app.ws("/ws", (ws) => {
   setTimeout(() => term.kill(), 3600 * 1000); // session timeout
   term.on("data", (data) => {
     try {
-      ws.send(data.replace(ANSI_CODE_REGEX, ''));
+      ws.send(data);
     } catch (err) {}
   });
   ws.on("message", (data) => term.write(data));
 });
 
-app.listen(parseInt(process.env.PORT), "0.0.0.0");
+app.listen(parseInt(8080), "0.0.0.0");
