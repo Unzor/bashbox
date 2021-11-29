@@ -26,4 +26,4 @@ app.ws("/ws", (ws) => {
   ws.on("message", (data) => term.write(data));
 });
 
-app.listen(parseInt(8080), "0.0.0.0");
+app.listen(parseInt(process.env.PORT));
