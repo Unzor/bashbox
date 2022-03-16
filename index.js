@@ -17,7 +17,6 @@ app.get("/", (req, res) => {
 });
 app.ws("/ws", (ws) => {
   const term = pty.spawn("sh", [], { name: "xterm-color" });
-  setTimeout(() => term.kill(), 3600 * 1000); // session timeout
   term.on("data", (data) => {
     try {
       ws.send(data);
